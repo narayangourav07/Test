@@ -5,7 +5,7 @@ pipeline {
         stage('checkout') {
             when {
                 // Only say hello if a "greeting" is requested
-                expression { env.GIT_BRANCH == 'origin/test' }
+                expression { env.GIT_BRANCH == 'origin/master' }
             }
             agent {
                node {
@@ -18,6 +18,16 @@ pipeline {
             }
         }
         stage('Hello') {
+            when {
+                // Only say hello if a "greeting" is requested
+                expression { env.GIT_BRANCH == 'origin/master' }
+            }
+            agent {
+               node {
+                label 'testing-server'
+                customWorkspace '/home/ubuntu/LC-WP'
+                 }
+            }
             steps {
                 echo 'Hello World'
                 echo "${env.GIT_BRANCH}"
