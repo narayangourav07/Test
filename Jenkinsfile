@@ -3,9 +3,10 @@ pipeline {
 
     stages {
         stage('checkout') {
+            echo "${env.GIT_BRANCH}"
             when {
                 // Only say hello if a "greeting" is requested
-                expression { env.GIT_BRANCH == 'origin/test' }
+                expression { env.GIT_BRANCH == 'test' }
             }
             agent {
                node {
