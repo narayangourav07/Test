@@ -2,8 +2,12 @@ pipeline {
     agent none
 
     stages {
+        stage('test') {
+            steps{
+                  echo "${env.GIT_BRANCH}"
+            }
+        }
         stage('checkout') {
-            echo "${env.GIT_BRANCH}"
             when {
                 // Only say hello if a "greeting" is requested
                 expression { env.GIT_BRANCH == 'test' }
