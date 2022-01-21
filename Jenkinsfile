@@ -24,7 +24,6 @@ pipeline {
         }
         stage('Hello') {
             when {
-                // Only say hello if a "greeting" is requested
                 expression { env.GIT_BRANCH == 'origin/test' }
             }
             agent {
